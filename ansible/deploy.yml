@@ -4,4 +4,6 @@
       command: aws eks update-kubeconfig --region us-east-2 --name calculator-devops-cluster
 
     - name: Apply Kubernetes manifests
-      command: kubectl apply -f ../k8s/
+      kubernetes.core.k8s:
+        state: present
+        definition: "{{ lookup('template', '../k8s/deployment.yaml.j2') }}"
