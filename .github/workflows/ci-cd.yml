@@ -84,6 +84,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ansible
   
+      # 🔑 New step: substitute IMAGE_URI into manifest
+      - name: Inject image URI into manifest
+        run: |
+          sed -i "s|\${IMAGE_URI}|${{ env.IMAGE_URI }}|g" k8s/deployment.yaml
+  
       - name: Deploy with Ansible
         run: ansible-playbook ansible/deploy.yml
-
