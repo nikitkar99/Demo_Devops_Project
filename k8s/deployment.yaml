@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: calculator-container
-        image: 525881111178.dkr.ecr.us-east-2.amazonaws.com/demo_devops_project:${GITHUB_SHA}
+        image: ${IMAGE_URI}
         ports:
         - containerPort: 5000
