@@ -83,12 +83,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ansible
   
-      # 🔑 Replace placeholder with actual ECR URI
-      - name: Inject image URI into manifest
-        run: |
-          sed -i "s|\${IMAGE_URI}|${{ env.IMAGE_URI }}|g" k8s/deployment.yaml
-  
+      # 🔑 Pass IMAGE_URI directly into Ansible
       - name: Deploy with Ansible
-        run: ansible-playbook ansible/deploy.yml
+        run: ansible-playbook ansible/deploy.yml --extra-vars "IMAGE_URI=${{ env.IMAGE_URI }}"
+
 
   
