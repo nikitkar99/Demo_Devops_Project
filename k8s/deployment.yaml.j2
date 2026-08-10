@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: calculator-container
-        image: ${IMAGE_URI}
+        image: {{ IMAGE_URI }}
         ports:
         - containerPort: 5000
